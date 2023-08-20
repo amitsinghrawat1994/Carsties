@@ -3,3 +3,7 @@ git log --all -decorate --oneline --group
 git config --global alias.adog "git log --all -decorate --oneline --group"
 
 dotnet ef migrations add "IntialCreate" -o Data/Migrations
+
+docker compose up -d
+
+dotnet ef database update
