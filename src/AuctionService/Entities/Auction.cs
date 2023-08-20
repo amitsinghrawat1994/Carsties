@@ -8,6 +8,7 @@ public class Auction
     public int ReservePrice { get; set; } = 0;
     public string Seller { get; set; }
     public string Winner { get; set; }
+    public DateTime AuctionEnd { get; set; }
     public int? SoldAmount { get; set; }
     public int? CurrentHighBid { get; set; }
     public DateTime CreateAt { get; set; } = DateTime.UtcNow;
