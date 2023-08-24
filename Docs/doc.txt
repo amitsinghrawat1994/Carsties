@@ -7,3 +7,7 @@ dotnet ef migrations add "IntialCreate" -o Data/Migrations
 docker compose up -d
 
 dotnet ef database update
+
+dotnet add reference ../../src/Contracts
+
+
