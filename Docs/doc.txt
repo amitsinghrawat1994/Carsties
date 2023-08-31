@@ -10,4 +10,7 @@ dotnet ef database update
 
 dotnet add reference ../../src/Contracts
 
+ dotnet ef migrations add "InitialCreate" -o Data/Migrations
+
+ 
 
