@@ -12,5 +12,9 @@ dotnet add reference ../../src/Contracts
 
  dotnet ef migrations add "InitialCreate" -o Data/Migrations
 
- 
+--  build docker file
+ docker build -f src/AuctionService/Dockerfile -t test123 .
+
+-- run docker file
+ docker run testing123
 
