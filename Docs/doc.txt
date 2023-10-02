@@ -18,3 +18,4 @@ dotnet add reference ../../src/Contracts
 -- run docker file
  docker run testing123
 
+docker compose build auction-svc
