@@ -2,34 +2,50 @@
 
 import React, { useEffect, useState } from 'react'
 import AuctionCard from './AuctionCard';
-import { Auction } from '@/types';
+import { Auction, PagedResult } from '@/types';
 import AppPagination from '../components/AppPagination';
 import { getData } from '../actions/auctionActions';
+import Filters from './Filters';
+import { userParamStore } from '../hooks/userParamsStore';
+import { shallow } from 'zustand/shallow';
+import qs from 'query-string';
 
 export default function Listings() {
-    const [auctions, setAuctions] = useState<Auction[]>([]);
-    const [pageCount, setPageCount] = useState(0);
-    const [pageNumber, setPageNumber] = useState(1);
+    const [data, setData] = useState<PagedResult<Auction>>();
+    const params = userParamStore(state => ({
+        pageNumber: state.pageNumber,
+        pageSize: state.pageSize,
+        searchTerm: state.searchTerm
+    }), shallow);
+
+    const setParams = userParamStore(state => state.setParams);
+
+    const url = qs.stringifyUrl({ url: '', query: params })
+
+    function setPageNumber(pageNumber: number) {
+        setParams({ pageNumber })
+    }
+
 
     useEffect(() => {
-        getData(pageNumber)
+        getData(url)
             .then(data => {
-                setAuctions(data.results)
-                setPageCount(data.pageCount)
+                setData(data)
             })
-    }, [pageNumber])
+    }, [url])
 
-    if (auctions.length === 0) return (<div><h3 >Loading....</h3></div>)
+    if (!data) return (<div><h3 >Loading....</h3></div>)
 
     return (
         <>
+            <Filters />
             <div className='grid grid-cols-4 gap-6'>
-                {auctions.map((auction) => (
+                {data.results.map((auction) => (
                     <AuctionCard auction={auction} key={auction.id} />
                 ))}
             </div>
             <div className='flex justify-center mt-4'>
-                <AppPagination currentPage={pageNumber} pageCount={pageCount} pageChanged={setPageNumber} />
+                <AppPagination pageChanged={setPageNumber} currentPage={params.pageNumber} pageCount={data.pageCount} />
             </div>
         </>
     )
