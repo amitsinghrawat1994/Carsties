@@ -6,8 +6,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
-  console.log('Server component')
   return (
     <html lang="en">
       <body>
