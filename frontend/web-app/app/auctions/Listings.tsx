@@ -26,7 +26,6 @@ export default function Listings() {
         setParams({ pageNumber })
     }
 
-
     useEffect(() => {
         getData(url)
             .then(data => {
