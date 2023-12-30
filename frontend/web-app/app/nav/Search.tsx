@@ -6,14 +6,15 @@ import { userParamStore } from '../hooks/userParamsStore'
 
 export default function Search() {
     const serParams = userParamStore(state => state.setParams);
-    const [value, setValue] = useState('');
+    const setSearchValue = userParamStore(state => state.setSearchValue);
+    const searchValue = userParamStore(state => state.searchValue);
 
     function onChange(event: any) {
-        setValue(event.target.value);
+        setSearchValue(event.target.value);
     }
 
     function search() {
-        serParams({ searchTerm: value });
+        serParams({ searchTerm: searchValue });
     }
 
     return (
@@ -22,6 +23,7 @@ export default function Search() {
                 onKeyDown={(e: any) => {
                     if (e.key === 'Enter') search();
                 }}
+                value={searchValue}
                 onChange={onChange}
                 type='text'
                 placeholder='Search for a cars by make, model or color'
