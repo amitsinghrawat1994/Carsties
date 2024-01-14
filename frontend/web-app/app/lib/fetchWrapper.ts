@@ -57,6 +57,9 @@ async function getHeaders() {
     if (token) {
         headers.Authorization = 'Bearer ' + token.access_token
     }
+
+    console.log('getHeaders called : headers: ', headers)
+    return headers;
 }
 
 async function handleResponse(response: Response) {
@@ -73,7 +76,7 @@ async function handleResponse(response: Response) {
             message: response.statusText
         }
 
-        return error;
+        return { error };
     }
 }
 
@@ -81,5 +84,5 @@ export const fetchWrapper = {
     get,
     post,
     put,
-    delete
+    del
 }
