@@ -23,3 +23,8 @@ docker compose build auction-svc
 docker compose up -d
 
 docker compose build identity-svc
+
+dotnet new webapi -o src/BiddingService
+
+
+ dotnet sln add .\src\BiddingService\
