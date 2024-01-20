@@ -29,7 +29,7 @@ export async function updateAuctionTest() {
 
     // if (!res.ok) return { status: res.status, message: res.statusText }
 
-    // return res.statusText;
+    // retu rn res.statusText;
 }
 
 export async function createAuction(data: FieldValues) {
@@ -46,4 +46,8 @@ export async function updateAuction(data: FieldValues, id: string) {
     revalidatePath(`auctions/${id}`)
 
     return res;
+}
+
+export async function deleteAuction(id: string) {
+    return await fetchWrapper.del(`auctions/${id}`);
 }
