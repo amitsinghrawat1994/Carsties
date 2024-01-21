@@ -5,7 +5,7 @@ using MongoDB.Entities;
 namespace BiddingService;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/bids")]
 public class BidsControllers : ControllerBase
 {
     [Authorize]
