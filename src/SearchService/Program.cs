@@ -5,7 +5,6 @@ using MongoDB.Entities;
 using Polly;
 using Polly.Extensions.Http;
 using SearchService;
-using SearchService.Consumers;
 using SearchService.Data;
 using SearchService.Models;
 

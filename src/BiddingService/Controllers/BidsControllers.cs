@@ -69,7 +69,9 @@ public class BidsControllers : ControllerBase
 
         await DB.SaveAsync(bid);
 
-        await _publishEndpoint.Publish(_mapper.Map<BidPlaced>(bid));
+        var bidPlaced = _mapper.Map<BidPlaced>(bid);
+
+        await _publishEndpoint.Publish(bidPlaced);
 
         return Ok(_mapper.Map<BidDto>(bid));
     }

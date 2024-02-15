@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.HttpLogging;
 using MongoDB.Entities;
 using SearchService.Models;
 
-namespace SearchService.Consumers;
+namespace SearchService;
 
 public class AuctionUpdatedConsumer : IConsumer<AuctionUpdated>
 {

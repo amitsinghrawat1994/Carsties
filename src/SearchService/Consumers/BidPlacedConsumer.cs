@@ -9,7 +9,7 @@ public class BidPlacedConsumer : IConsumer<BidPlaced>
 {
     public async Task Consume(ConsumeContext<BidPlaced> context)
     {
-        Console.WriteLine("--> Consuming Bid placed");
+        Console.WriteLine("-->Search service Consuming Bid placed");
 
         var auction = await DB.Find<Item>().OneAsync(context.Message.AuctionId);
 
