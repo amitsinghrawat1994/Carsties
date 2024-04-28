@@ -28,3 +28,13 @@ dotnet new webapi -o src/BiddingService
 
 
  dotnet sln add .\src\BiddingService\
+
+
+ Stucked on 
+  Chapter 163 Updating the error handing
+  not able to get the correct error message
+
+
+--------------------------------------
+  -- front end folder path: D:\test_poc\Microservice\Udemy\Carsties\frontend\web-app
+  -- Solution folder path: D:\test_poc\Microservice\Udemy\Carsties
