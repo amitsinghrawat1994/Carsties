@@ -28,13 +28,13 @@ export default function SignalRProvider({ children }: Props) {
         if (connection) {
             connection.start()
                 .then(() => {
-                    console.log('Connected to notification hub');
-
                     connection.on('BidPlaced', (bid: Bid) => {
                         console.log('Bid placed event received');
                         if (bid.bidStatus.includes('Accepted')) {
                             setCurrentPrice(bid.auctionId, bid.amount);
                         }
+
+                        addBid(bid);
                     })
                 }).catch(error => console.log(error));
         }
