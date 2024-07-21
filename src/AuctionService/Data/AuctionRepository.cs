@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuctionService;
 
-public class AuctionRepository : IActionRepository
+public class AuctionRepository : IAuctionRepository
 {
     private readonly AuctionDbContext _context;
     private readonly IMapper _mapper;

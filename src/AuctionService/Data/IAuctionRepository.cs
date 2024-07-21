@@ -2,7 +2,7 @@
 
 namespace AuctionService;
 
-public interface IActionRepository
+public interface IAuctionRepository
 {
     Task<List<AuctionDto>> GetAuctionsAsync(string date);
     Task<AuctionDto> GetAuctionByIdAsync(Guid id);
