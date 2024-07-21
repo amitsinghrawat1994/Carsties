@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using AuctionService.DTOs;
+﻿using AuctionService.DTOs;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Contracts;
@@ -48,6 +47,8 @@ public class AuctionsController : ControllerBase
         var auction = await _context.Auctions
                    .Include(x => x.Item)
                    .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (auction == null) return NotFound();
 
         return _mapper.Map<AuctionDto>(auction);
     }

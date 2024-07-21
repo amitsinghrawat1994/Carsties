@@ -38,3 +38,7 @@ dotnet new webapi -o src/BiddingService
 --------------------------------------
   -- front end folder path: D:\test_poc\Microservice\Udemy\Carsties\frontend\web-app
   -- Solution folder path: D:\test_poc\Microservice\Udemy\Carsties
+
+  dotnet sln add tests/AuctionService.UnitTests
+
+   dotnet new xunit -o tests/AuctionService.UnitTests 
