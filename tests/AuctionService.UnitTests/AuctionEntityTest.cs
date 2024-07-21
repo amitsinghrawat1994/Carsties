@@ -6,7 +6,7 @@ public class UnitTest1
     public void HasReservedPrice_ReservedPriceGtZero_True()
     {
         // arrange
-        var auction = new Auction { Id = Guid.NewGuid(), ReservePrice = 0 };
+        var auction = new Auction { Id = Guid.NewGuid(), ReservePrice = 10 };
         // act
         var result = auction.HasReservePrice();
         // assert
@@ -25,8 +25,4 @@ public class UnitTest1
         // assert
         Assert.False(result);
     }
-
-    [Fact]
-
-
 }
