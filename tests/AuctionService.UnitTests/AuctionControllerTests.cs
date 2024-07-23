@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using AuctionService.Controllers;
 using AuctionService.DTOs;
+using AuctionService.Entities;
 using AuctionService.RequestHelpers;
 using AutoFixture;
 using AutoMapper;
@@ -103,5 +104,24 @@ public class AuctionControllerTests
         Assert.NotNull(createdResult);
         Assert.Equal("GetAuctionById", createdResult.ActionName);
         Assert.IsType<AuctionDto>(createdResult.Value);
+    }
+
+    [Fact]
+    public async Task UpdateAuction_WithUpdateAuctionDto_ReturnsOkResponse()
+    {
+        var auction = _fixture.Build<Auction>().Without(x => x.Item).Create();
+        auction.Item = _fixture.Build<Item>().Without(x => x.Auction).Create();
+
+        auction.Seller = "test";
+
+        var updateDto = _fixture.Create<UpdateAuctionDto>();
+        _auctionRepo.Setup(repo => repo.GetAuctionEntityById(It.IsAny<Guid>()))
+        .ReturnsAsync(auction);
+
+        //act
+        var result = await _controller.UpdateAuction(auction.Id, updateDto);
+
+        // assert
+        Assert.IsType<OkResult>(result);
     }
 }
