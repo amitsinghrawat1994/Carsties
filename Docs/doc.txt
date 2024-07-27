@@ -42,3 +42,7 @@ dotnet new webapi -o src/BiddingService
   dotnet sln add tests/AuctionService.UnitTests
 
    dotnet new xunit -o tests/AuctionService.UnitTests 
+
+   dotnet new xunit -o tests/AuctionService.IntergrationTests
+
+   dotnet sln add tests/AuctionService.IntergrationTests
