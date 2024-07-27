@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Expressions.Internal;
 using Testcontainers.PostgreSql;
+using WebMotions.Fake.Authentication.JwtBearer;
 
 namespace AuctionService.IntergrationTests;
 
@@ -33,6 +34,12 @@ public class CustomWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetim
             services.AddMassTransitTestHarness();
 
             services.EnsureCreated<AuctionDbContext>();
+
+            services.AddAuthentication(FakeJwtBearerDefaults.AuthenticationScheme)
+            .AddFakeJwtBearer(opt =>
+            {
+                opt.BearerValueType = FakeJwtBearerBearerValueType.Jwt;
+            });
         });
     }
 
