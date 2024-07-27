@@ -1,5 +1,7 @@
 ﻿
+using System.Net;
 using System.Net.Http.Json;
+using System.Xml;
 using AuctionService.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +11,7 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
 {
     private readonly CustomWebAppFactory _factory;
     private readonly HttpClient _httpClient;
+    private const string GT_Id = "afbee524-5972-4075-8800-7d1f9d7b0a0c";
 
     public AuctionControllerTests(CustomWebAppFactory factory)
     {
@@ -27,6 +30,42 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
 
         // assert
         Assert.Equal(3, response.Count);
+    }
+
+    [Fact]
+    public async Task GetAuctionById_WithValidId_ShouldReturnAuction()
+    {
+        // arrange
+
+        // act
+        var response = await _httpClient.GetFromJsonAsync<AuctionDto>($"api/auctions/{GT_Id}");
+
+        // assert
+        Assert.Equal("GT", response.Model);
+    }
+
+    [Fact]
+    public async Task GetAuctionById_WithInValidId_ShouldReturn404()
+    {
+        // arrange
+
+        // act
+        var response = await _httpClient.GetAsync($"api/auctions/{Guid.NewGuid()}");
+
+        // assert
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetAuctionById_WithInValidGuid_ShouldReturn404()
+    {
+        // arrange
+
+        // act
+        var response = await _httpClient.GetAsync($"api/auctions/notaguid");
+
+        // assert
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
 
