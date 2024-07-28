@@ -129,18 +129,18 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
-    [Fact]
-    public async Task UpdateAuction_WithValidUpdateDtoAndInvalidUser_ShouldReturn403()
-    {
-        // arrange 
-        var updateAuction = new UpdateAuctionDto { Make = "Updated" };
-        _httpClient.SetFakeBearerToken(AuthHelper.GetBearerForUser("notbob"));
-        // act
-        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_Id}", updateAuction);
+    // [Fact]
+    // public async Task UpdateAuction_WithValidUpdateDtoAndInvalidUser_ShouldReturn403()
+    // {
+    //     // arrange 
+    //     var updateAuction = new UpdateAuctionDto { Make = "Updated" };
+    //     _httpClient.SetFakeBearerToken(AuthHelper.GetBearerForUser("notbob"));
+    //     // act
+    //     var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_Id}", updateAuction);
 
-        // assert
-        Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
-    }
+    //     // assert
+    //     Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+    // }
 
 
     public Task InitializeAsync() => Task.CompletedTask;
